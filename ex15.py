@@ -23,3 +23,12 @@ txt_again = open(file_again)
 # Print the file 
 print txt_again.read()
 
+# Closint the file
+txt.close()
+txt_again.close()
+
+# Testing to see if files were closed
+print txt.read()
+
+
+
