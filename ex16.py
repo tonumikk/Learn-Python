@@ -22,7 +22,7 @@ line3 = raw_input("line 3: ")
 
 print "I'm going to write these to the file."
  
-target.write("%r \n %r \n %r \n" % (line1,line2,line3))  
+-target.write("%r \n %r \n %r \n" % (line1,line2,line3)) 
 
 print "And finally, we close it."
 target.close()
