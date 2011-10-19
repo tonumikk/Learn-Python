@@ -33,7 +33,7 @@ print "Now let's rewind, kind of like a tape."
 rewind(current_file)
 
 # Print out what will appear on the screen next
-print "lets print three lines:"
+print "lets print three lines: \n"
 
 # Set current_line to 1
 current_line = 1
@@ -41,12 +41,12 @@ current_line = 1
 print_a_line(current_line, current_file)
 
 # Set current_line to what it was plus one line
-current_line = current_line + 1
+current_line += 1
 # Run print_a_line function with current_line and current_file that displays the line number and the text of the line
 print_a_line(current_line, current_file)
 
 # Set current_line to what it was plus one line
-current_line = current_line + 1
+current_line += 1
 # Run print_a_line function with current_line and current_file that displays the line number and the text of the line
 print_a_line(current_line, current_file)
     
