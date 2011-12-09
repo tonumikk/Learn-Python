@@ -1,8 +1,9 @@
 #i = 0 
 numbers = []
+some_number = 12
 
 def while_loop(i):
-    while i < 6:
+    while i < some_number:
         print "At the top i is %d" % i
         numbers.append(i)
 
