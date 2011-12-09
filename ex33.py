@@ -1,13 +1,12 @@
-#i = 0 
+# i = 0 
 numbers = []
-some_number = 12
 
-def while_loop(i):
+def while_loop(i, some_number, incrementor):
     while i < some_number:
         print "At the top i is %d" % i
         numbers.append(i)
 
-        i = i + 1
+        i = i + incrementor
         print "numbers now: ", numbers
         print "At the bottom i is %d" % i
 
@@ -16,4 +15,4 @@ def while_loop(i):
     for num in numbers:
         print num
 
-while_loop(0)
+while_loop(0, 10, 2)
