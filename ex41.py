@@ -23,8 +23,6 @@ a Gothon jumps out, read scaly skin, dark grimy teeth, and evil clown costume
 flowing around his hate filled body.  He's blocking the door to the
 Armory and about to pull a weapon to blast you.
     """
-    print central_corridor.__doc__
-
     action = raw_input("> ")
 
     if action == "shoot!":
@@ -68,7 +66,6 @@ and you need the code to get the bomb out.  If you get the code
 wrong 10 times then the lock closes forever and you can't
 get the bomb.  The code is 3 digits.
     """
-    print laser_weapon_armory.__doc__
     code = "%d%d%d" % (randint(1, 9), randint(1, 9), randint(1, 9))
     print code
     guess = raw_input("[keypad]> ")
@@ -100,7 +97,6 @@ clown costumer than the last.  They haven't pulled their
 weapons out yet, as they see the active bomb under your
 arm and don't want to set it off.
     """
-    print the_bridge.__doc__
     action = raw_input("> ")
 
     if action == "Throw the bomb":
@@ -171,6 +167,7 @@ def runner(map, start):
     while True:
         room = map[next]
         print "\n--------"
+        print room.__doc__
         next = room()
 
 runner(ROOMS, 'central_corridor')
