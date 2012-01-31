@@ -16,15 +16,16 @@ class Game(object):
         next = self.start
         
         while True:
-        print "\n--------"
-        room = getattr(self, next)
-        next = room()
+            print "\n--------"
+            room = getattr(self, next)
+            print room.__doc__
+            next = room()
 
     def death(self):
         print quips[randint(0, len(quips)-1)]
         exit(1)
 
-    def central_corridor():
+    def central_corridor(self):
         """
 The Gothons of Planet Percal #25 have invaded your ship and destroyed
 your entire crew.  You are the last surviving member and your last
@@ -70,7 +71,7 @@ Armory and about to pull a weapon to blast you.
             print"DOES NOT COMPUTE!"
             return 'central_corridor'
 
-    def laser_weapon_armory():
+    def laser_weapon_armory(self):
         """
 You do a dive roll into the Weapon Armory, crouch and scan the room:
 for more Gothons that might be hiding.  It's dead quiet, too quiet.
@@ -102,14 +103,14 @@ get the bomb.  The code is 3 digits.
             print "ship from their ship and you die."
             return 'death'
 
-    def the_bridge():
+    def the_bridge(self):
         """
-    You burst onto the Bridge with the neutron destruct bomb
-    under you arm and surprise 5 Gothons who are trying to
-    take control of the ship.  Each of them has an even uglier
-    clown costumer than the last.  They haven't pulled their
-    weapons out yet, as they see the active bomb under your
-    arm and don't want to set it off.
+You burst onto the Bridge with the neutron destruct bomb
+under you arm and surprise 5 Gothons who are trying to
+take control of the ship.  Each of them has an even uglier
+clown costumer than the last.  They haven't pulled their
+weapons out yet, as they see the active bomb under your
+arm and don't want to set it off.
         """
         action = raw_input("> ")
 
@@ -131,12 +132,42 @@ get the bomb.  The code is 3 digits.
             print "and blast the lock so the Gothons can't get out."
             print "Now that the bomb is placed you run to the escape pod to"
             print "get off this tin can."
-            return 'escape_pod' 
+            return 'escape_pod1' 
         else:
             print "DOES NOT COMPUTE!"
             return "the_bridge"
 
-    def escape_pod():
+    def escape_pod1(self):
+        """
+You rush through the ship desperately trying to make it to"
+the escape pod before the whole ship explodes.  It seems like"
+hardly any Gohons are on the ship, so your run is clear of"
+interference. You get to the champer with the escape pods, and"
+now need to pick one to take.  Some of them could be damaged"
+but you don't have time to look.  There's 6 pods, which one"
+do you take?"
+    """
+
+        good_pod = randint(1, 6)
+        print good_pod
+        guess = raw_input("[pod #]> ")
+
+        if int(guess) != good_pod:
+            print "you jump into pod %s and hit the eject button." % guess
+            print "The pod escapes out into the void of space, then"
+            print "implodes as the hull ruptures, crushing your body"
+            print "into jam jelly."
+            return 'death'
+        else:
+            print "you jump into pod %s and hit the eject button." % guess
+            print "The pod easily slides out into space heading to"
+            print "the planet below.  As it flies to the planet, you look"
+            print "back and see your ship implode then explode lie a"
+            print "bright star, taking or the Gothon ship at the same"
+            print "time."
+            return "escape_pod2"
+
+    def escape_pod2(self):
         """
 You rush through the ship desperately trying to make it to"
 the escape pod before the whole ship explodes.  It seems like"
@@ -158,12 +189,12 @@ do you take?"
             print "into jam jelly."
             return 'death'
         else:
-            print "you jump into pod%s and hit the eject button." % guess
+            print "you jump into pod %s and hit the eject button." % guess
             print "The pod easily slides out into space heading to"
             print "the planet below.  As it flies to the planet, you look"
             print "back and see your ship implode then explode lie a"
             print "bright star, taking or the Gothon ship at the same"
-            print "time. You won!"
+            print "time. You win!"
             exit(0)
 
 a_game = Game("central_corridor")
