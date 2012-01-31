@@ -132,7 +132,6 @@ now need to pick one to take.  Some of them could be damaged"
 but you don't have time to look.  There's 5 pods, which one"
 do you take?"
     """
-    print escape_pod.__doc__
 
     good_pod = randint(1, 5)
     print good_pod
