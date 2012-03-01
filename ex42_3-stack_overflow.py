@@ -1,30 +1,19 @@
 from sys import exit
 from random import randint
 
-class Game(object):
+class Room(object):
 
-    def __init__(self, start):
+    def __init__(self):
         self.quips = [
                 "You died. you kinda suck at this.", 
                 "Nice job, you died ...jackass.",
                 "Such a luser.",
                 "I have a small puppy that's better at this."
         ]
-        self.start = start
-
-    def play(self):
-        next = self.start
-        
-        while True:
-            print "\n--------"
-            room = getattr(self, next)
-            print room.__doc__
-            next = room()
-
     def death(self):
-        print quips[randint(0, len(quips)-1)]
+        print self.quips[randint(0, len(self.quips)-1)]
         exit(1)
-
+    
     def central_corridor(self):
         """
 The Gothons of Planet Percal #25 have invaded your ship and destroyed
@@ -35,13 +24,13 @@ escape pod.
 \n
 You're running down the central corridor to the Weapons Armory when
 a Gothon jumps out, read scaly skin, dark grimy teeth, and evil clown costume
-flowing around his hate filled body.  He's blocking the door to the
+flowing around his hate filled body.  He's blocking the door to the 
 Armory and about to pull a weapon to blast you.
         """
         action = raw_input("> ")
 
         if action == "shoot!":
-            """
+            print """
 Quick on the draw you yank out your blaster and fire it at the Gothon.
 His clown costume is flowing and moving around his body, which throws
 off your aim.  Your laser hits his costume but misses him entirely.  This
@@ -52,7 +41,7 @@ you are dead.  Then he eats you.
             return 'death'
 
         elif action == "dodge!":
-            """
+            print """
 Like a world class boxer you dodge, weave, slip and slide right
 as the Gothon's blaster cranks a laser past your head.
 In the middle of your artful dodge your foot slips and you
@@ -63,7 +52,7 @@ your head and eats you.
             return 'death'
 
         elif action == "tell a joke":
-            """
+            print """
 Lucky for you they made you learn Gothon insults in the academy.
 you tell the one Gothon joke you know:
 Lbhe zbgur vf fb sng, jura fur fvgf hebhaq gur ubhrf, fur fvgf nebhaq gur ubhrf.
@@ -98,14 +87,14 @@ get the bomb.  The code is 3 digits.
             guess = raw_input("[keypad]> ")
 
         if guess == code:
-            """
+            print """
 The container clicks open and the seal breaks, letting gas out.
 you grab the neutron bomb and run as fast as you can to the
 bridge where you must place it in the right spot.
             """
             return 'the_bridge'
         else:
-            """
+            print """
 The lock buzzes one last time and then you hear a sickening
 melting sound as the mechanism is fused together.
 you decide to sit there, and finally the Gothons blow up the
@@ -125,7 +114,7 @@ arm and don't want to set it off.
         action = raw_input("> ")
 
         if action == "Throw the bomb":
-            """
+            print """
 in a panic you throw the bomb at the group of Gothons
 and make a leap for the door.  Right as you drop it a
 Gothon shoots you right in the back killing you.
@@ -136,7 +125,7 @@ it goes off.
             return 'death'
 
         elif action == "slowly place the bomb":
-            """
+            print """
 You point your blaster at the bomb under your arm
 and the Gothon's put their hands up and start to sweat.
 you inch backward to the door, open it, and then carefully
@@ -168,7 +157,7 @@ do you take?"
 
         if int(guess) != good_pod:
             print "you jump into pod %s and hit the eject button." % guess
-            """
+            print """
 The pod escapes out into the void of space, then
 implodes as the hull ruptures, crushing your body
 into jam jelly.
@@ -176,7 +165,7 @@ into jam jelly.
             return 'death'
         else:
             print "you jump into pod %s and hit the eject button." % guess
-            """"
+            print """
 The pod easily slides out into space heading to
 the planet below.  As it flies to the planet, you look
 back and see your ship implode then explode lie a
@@ -194,7 +183,7 @@ interference. You get to the champer with the escape pods, and"
 now need to pick one to take.  Some of them could be damaged"
 but you don't have time to look.  There's 5 pods, which one"
 do you take?"
-    """
+        """
 
         good_pod = randint(1, 5)
         print good_pod
@@ -202,7 +191,7 @@ do you take?"
 
         if int(guess) != good_pod:
             print "you jump into pod %s and hit the eject button." % guess
-            """
+            print """
 The pod escapes out into the void of space, then
 implodes as the hull ruptures, crushing your body
 into jam jelly.
@@ -210,7 +199,7 @@ into jam jelly.
             return 'death'
         else:
             print "you jump into pod %s and hit the eject button." % guess
-            """
+            print """
 The pod easily slides out into space heading to
 the planet below.  As it flies to the planet, you look
 back and see your ship implode then explode lie a
@@ -219,11 +208,23 @@ time. You win!
             """
             exit(0)
 
-a_game = Game("central_corridor")
-a_game.play()
+class Engine(object):
 
-    
+    def __init__(self, o, map): 
+        self.map = map
+        self.obj = o
 
-     
-    
-            
+    def play(self):
+        next = self.map
+        
+        while True:
+            print "\n--------"
+            room = getattr(self.obj, next)
+            print room.__doc__
+            next = room()
+
+
+a_map = Room()            
+game = Engine(a_map, "central_corridor")
+
+game.play()
