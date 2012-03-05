@@ -1,7 +1,7 @@
 taxi_driver_day = [] # list to store taxi ride objects
 
 class TaxiMeter(object):
-    passanger_count = 0
+    passanger_count = 0 # sets some initial values for totals
     total_miles = 0
     total_fare = 0
     
@@ -10,7 +10,7 @@ class TaxiMeter(object):
         self.passanger = passangerName
         self.destination = passangerDestination
         TaxiMeter.passanger_count += 1
-        TaxiMeter.total_miles += self.miles
+        TaxiMeter.total_miles += self.miles # adds trip miles to the previous total trip miles
         
     def __str__(self):
         message = "Name: " + self.passanger + ", "
@@ -22,7 +22,7 @@ class TaxiMeter(object):
     
     def fare(self): # fare is method of the TaxiMeter class
         self.fare_a = self.miles*3
-        TaxiMeter.total_fare += self.fare_a
+        TaxiMeter.total_fare += self.fare_a # add trip fare to the previous total trip fare
     
 class InputOutput(object):
     
@@ -39,7 +39,6 @@ passanger hailing a cab.
             print "You drive %s to %s" % (name, destination)
             trip = input("How long was your trip: ")
             trip_a = TaxiMeter(trip, name, destination) # makes an instance of the TaxiMeter class
-            # ride_a = DriverDay(name, destination)
             print "%s traveled %r miles to the %s" % (trip_a.passanger, trip_a.miles, trip_a.destination)
             trip_a.fare() # calls the fare method
             print "... and it cost him/her %r dollars" % trip_a.fare_a
@@ -48,7 +47,7 @@ passanger hailing a cab.
             print "That ends your work today!"
             print "Here are your rides for today ..."
             
-            for item in taxi_driver_day: # print the 
+            for item in taxi_driver_day: # print the list each item in it's own row
                 print item
             
             print "Here are your daily totals ... "
